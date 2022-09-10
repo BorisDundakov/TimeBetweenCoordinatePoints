@@ -1,5 +1,6 @@
 import time
 
+import selenium.common.exceptions
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -30,16 +31,19 @@ def extract_time(starting_point, ending_point):
 
     go_btn = driver.find_element_by_class_name("dirBtnGo.commonButton")
     go_btn.click()
-    # TODO: FIX TIME SLEEP IMPLEMENTATION, NOT RECOMMENDED!
 
-    time.sleep(15)
-
-    time_hours = driver.find_element_by_class_name('drHours')
-    time_minutes = driver.find_element_by_class_name('drMins')
+    time_minutes = None
+    time_hours = None
+    while time_hours is None:
+        try:
+            time_hours = driver.find_element_by_class_name('drHours')
+            time_minutes = driver.find_element_by_class_name('drMins')
+        except selenium.common.exceptions.NoSuchElementException:
+            pass
 
     travel_time = f"{time_hours.text} h: {time_minutes.text} min"
     print(travel_time)
 
 
 if __name__ == '__main__':
-    extract_time('43.203714,23.547599', '42.6975,23.3241')
+    extract_time('43.203714,23.547599', '22.6975,23.3241')
