@@ -17,7 +17,7 @@ def extract_time(starting_point, ending_point):
     driver.get(maps_time_address)
 
     # ACCEPTING COOKIES
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#bnp_btn_accept"))).click()
+    WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#bnp_btn_accept"))).click()
 
     directions_btn = driver.find_element_by_class_name("directionsIcon")
     directions_btn.click()
