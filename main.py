@@ -42,8 +42,8 @@ def extract_time(starting_point, ending_point):
             pass
 
     travel_time = f"{time_hours.text} h: {time_minutes.text} min"
-    print(travel_time)
+    return(travel_time)
 
 
 if __name__ == '__main__':
-    extract_time('43.203714,23.547599', '22.6975,23.3241')
+    print(extract_time('43.203714,23.547599', '22.6975,23.3241'))
